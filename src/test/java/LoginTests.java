@@ -42,7 +42,6 @@ public class LoginTests {
     public void successfulLoginTest(String userEmail, String userPassword) {
         LandingPage landingPage = new LandingPage(driver);
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call");
-
         landingPage.login(userEmail, userPassword);
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isPageLoaded(), "Home page did not load after login to site");
