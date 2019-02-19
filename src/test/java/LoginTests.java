@@ -42,9 +42,11 @@ public class LoginTests {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call");
 
         landingPage.login("k.s.e.n.i.y.a@meta.ua", "111111");
-        WelcomeBackPage welcomeBackPage = new WelcomeBackPage(driver);
-        Assert.assertTrue(welcomeBackPage.isPageLoaded(), "Welcome back page did not load after login to site");
-
+        LoginSubmitPage loginSubmitPage = new LoginSubmitPage(driver);
+        Assert.assertTrue(loginSubmitPage.isPageLoaded(), "LoginSubmitPage did not load after login to site");
+        Assert.assertEquals(loginSubmitPage.getPasswordValidationMessageText(),
+                "Hmm, that's not the right password. Please try again or request a new one.",
+                "Wrong validation message for password field.");
         driver.close();
     }
 
@@ -57,8 +59,11 @@ public class LoginTests {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call");
 
         landingPage.login("k.s.e.n.i.y.a1@meta.ua", "test@1989");
-        WelcomeBackPage welcomeBackPage = new WelcomeBackPage(driver);
-        Assert.assertTrue(welcomeBackPage.isPageLoaded(), "Welcome back page did not load after login to site");
+        LoginSubmitPage loginSubmitPage = new LoginSubmitPage(driver);
+        Assert.assertTrue(loginSubmitPage.isPageLoaded(), "LoginSubmitPage did not load after login to site");
+        Assert.assertEquals(loginSubmitPage.getEmailValidationMessageText(),
+                "Hmm, we don't recognize that email. Please try again.",
+                "Wrong validation message for email field.");
 
         driver.quit();
     }
@@ -72,8 +77,11 @@ public class LoginTests {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call");
 
         landingPage.login("k.s.e.n.i.y.a", "test@1989");
-        WelcomeBackPage welcomeBackPage = new WelcomeBackPage(driver);
-        Assert.assertTrue(welcomeBackPage.isPageLoaded(), "Welcome back page did not load after login to site");
+        LoginSubmitPage loginSubmitPage = new LoginSubmitPage(driver);
+        Assert.assertTrue(loginSubmitPage.isPageLoaded(), "LoginSubmitPage did not load after login to site");
+        Assert.assertEquals(loginSubmitPage.getEmailValidationMessageText(),
+                "Please enter a valid email address.",
+                "Wrong validation message for email field.");
 
         driver.quit();
     }
