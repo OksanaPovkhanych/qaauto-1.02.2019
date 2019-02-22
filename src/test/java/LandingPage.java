@@ -20,26 +20,11 @@ public class LandingPage {
         PageFactory.initElements(driver, this);
     }
 
-    public HomePage loginToHomePage(String userEmail, String userPassword) {
+    public <T> T login(String userEmail, String userPassword, Object obj) {
         emailField.sendKeys(userEmail);
         passwordField.sendKeys(userPassword);
         signInButton.click();
-        return new HomePage(driver);
-    }
-
-    public LoginSubmitPage loginToLoginSubmitPage(String userEmail, String userPassword) {
-        emailField.sendKeys(userEmail);
-        passwordField.sendKeys(userPassword);
-        signInButton.click();
-        return new LoginSubmitPage(driver);
-    }
-
-
-    public LandingPage loginToLandingPage(String userEmail, String userPassword) {
-        emailField.sendKeys(userEmail);
-        passwordField.sendKeys(userPassword);
-        signInButton.click();
-        return new LandingPage(driver);
+        return (T)obj;
     }
 
 

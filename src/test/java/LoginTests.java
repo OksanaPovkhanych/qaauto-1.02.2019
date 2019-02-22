@@ -26,15 +26,15 @@ public class LoginTests {
     public Object[][] notValidData() {
         return new Object[][]{
                 { "a@b.c", "" },
-              //  { "", "a@b.c" },
-               // { " ", "" }
+                { "", "a@b.c" },
+                { " ", "" }
         };
     }
 
     @Test(dataProvider = "notValidData")
     public void negativeLoginTestStaySamePageTest(String userEmail, String userPassword) {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call.");
-        landingPage.loginToLandingPage(userEmail, userPassword);
+        landingPage.login(userEmail, userPassword, new LandingPage(driver));
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after login with empty password.");
     }
 
@@ -50,7 +50,7 @@ public class LoginTests {
     @Test(dataProvider = "validData")
     public void successfulLoginTest(String userEmail, String userPassword) {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call.");
-        HomePage homePage = landingPage.loginToHomePage(userEmail, userPassword);
+        HomePage homePage = landingPage.login(userEmail, userPassword, new HomePage(driver));
         Assert.assertTrue(homePage.isPageLoaded(), "Home page did not load after login to site.");
     }
 
@@ -71,7 +71,7 @@ public class LoginTests {
                                                      String passwordValidationMessage) {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call.");
 
-        LoginSubmitPage loginSubmitPage = landingPage.loginToLoginSubmitPage(userEmail, userPassword);
+        LoginSubmitPage loginSubmitPage = landingPage.login(userEmail, userPassword, new LoginSubmitPage(driver) );
         Assert.assertTrue(loginSubmitPage.isPageLoaded(), "LoginSubmitPage did not load after login to site.");
         Assert.assertEquals(loginSubmitPage.getEmailValidationMessageText(),
                 emailValidationMessage,
