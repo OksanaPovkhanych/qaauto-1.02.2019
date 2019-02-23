@@ -34,7 +34,7 @@ public class LoginTests {
     @Test(dataProvider = "notValidData")
     public void negativeLoginTestStaySamePageTest(String userEmail, String userPassword) {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call.");
-        landingPage.login(userEmail, userPassword, new LandingPage(driver));
+        landingPage.login(userEmail, userPassword);
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after login with empty password.");
     }
 
@@ -50,7 +50,7 @@ public class LoginTests {
     @Test(dataProvider = "validData")
     public void successfulLoginTest(String userEmail, String userPassword) {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call.");
-        HomePage homePage = landingPage.login(userEmail, userPassword, new HomePage(driver));
+        HomePage homePage = (landingPage).login(userEmail, userPassword);
         Assert.assertTrue(homePage.isPageLoaded(), "Home page did not load after login to site.");
     }
 
@@ -71,7 +71,7 @@ public class LoginTests {
                                                      String passwordValidationMessage) {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call.");
 
-        LoginSubmitPage loginSubmitPage = landingPage.login(userEmail, userPassword, new LoginSubmitPage(driver) );
+        LoginSubmitPage loginSubmitPage = landingPage.login(userEmail, userPassword);
         Assert.assertTrue(loginSubmitPage.isPageLoaded(), "LoginSubmitPage did not load after login to site.");
         Assert.assertEquals(loginSubmitPage.getEmailValidationMessageText(),
                 emailValidationMessage,

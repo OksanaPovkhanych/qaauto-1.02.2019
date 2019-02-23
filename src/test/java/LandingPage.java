@@ -20,11 +20,11 @@ public class LandingPage {
         PageFactory.initElements(driver, this);
     }
 
-    public  <T> T login(String userEmail, String userPassword, T pageType) {
+    public  <T extends Object> T login(String userEmail, String userPassword) {
         emailField.sendKeys(userEmail);
         passwordField.sendKeys(userPassword);
         signInButton.click();
-        return pageType;
+        return (T) new Object();
     }
 
 
