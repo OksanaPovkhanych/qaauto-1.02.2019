@@ -17,5 +17,7 @@ public class SearchTests extends BaseTest {
         Assert.assertTrue(homePage.isPageLoaded(), "Home page did not load after login to site.");
         SearchPage searchPage = homePage.search(searchTerm);
         Assert.assertTrue(searchPage.isPageLoaded(), "Search page did not load.");
+        Assert.assertEquals(searchPage.getSearchResultNumber(), 8, "Search result number is not equal.");
+        Assert.assertTrue(searchPage.isSearchResultRelevant(searchTerm), "Not all search results contain search term " + searchTerm);
     }
 }
