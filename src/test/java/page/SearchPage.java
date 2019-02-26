@@ -1,0 +1,24 @@
+package page;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class SearchPage {
+    private WebDriver driver;
+
+    @FindBy( xpath = "//h3[contains(@class, 'search-results__total')]")
+    private WebElement searchResultTotal;
+
+    public SearchPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    public boolean isPageLoaded() {
+        return driver.getCurrentUrl().contains("/search/results/all/")
+                && driver.getTitle().contains("| Search | LinkedIn")
+                && searchResultTotal.isDisplayed();
+    }
+}
