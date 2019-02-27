@@ -1,5 +1,6 @@
 package page;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,8 @@ public class SearchPage {
     }
 
     public int getSearchResultNumber() {
+        JavascriptExecutor jsx = (JavascriptExecutor)driver;
+        jsx.executeScript("window.scrollBy(0,1750)", "");
         return searchResultElements.size();
     }
 
@@ -43,7 +46,6 @@ public class SearchPage {
                 isSearchResultPresent = false;
                 break;
             }
- System.out.println();
         }
         return isSearchResultPresent;
     }
