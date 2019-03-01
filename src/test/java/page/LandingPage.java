@@ -5,27 +5,39 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
+/**
+ * Page Object class for Landing page.
+ */
 public class LandingPage  {
     private WebDriver driver;
 
     @FindBy( xpath = "//input[@id='login-email']")
-    private WebElement emailField;
+    private WebElement userEmailField;
 
     @FindBy ( xpath = "//input[@id='login-password']")
-    private WebElement passwordField;
+    private WebElement userPasswordField;
 
     @FindBy( xpath = "//input[@id='login-submit']")
     private WebElement signInButton;
 
+    /**
+     * Constructor for Landing Page.
+     * @param driver - WebDriver instance from BaseTest class.
+     */
     public LandingPage(WebDriver driver) {
        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * @param userEmail
+     * @param userPassword
+     * @param <T>
+     * @return
+     */
     public  <T> T login(String userEmail, String userPassword) {
-        emailField.sendKeys(userEmail);
-        passwordField.sendKeys(userPassword);
+        userEmailField.sendKeys(userEmail);
+        userPasswordField.sendKeys(userPassword);
         signInButton.click();
         if (driver.getCurrentUrl().equals("https://www.linkedin.com/feed/")) {
             return (T) new HomePage(driver);
@@ -38,13 +50,10 @@ public class LandingPage  {
         }
     }
 
-  /*  public  <T> T login(String userEmail, String userPassword, T pageType) {
-        emailField.sendKeys(userEmail);
-        passwordField.sendKeys(userPassword);
-        signInButton.click();
-        return  pageType;
-    } */
-
+    /**
+     * Method that checks if page is loaded.
+     * @return true/false
+     */
     public boolean isPageLoaded() {
         return driver.getTitle().equals("LinkedIn: Log In or Sign Up")
                 && driver.getCurrentUrl().equals("https://www.linkedin.com/")

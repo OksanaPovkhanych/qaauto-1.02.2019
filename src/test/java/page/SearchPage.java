@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchPage {
@@ -14,7 +16,7 @@ public class SearchPage {
     @FindBy( xpath = "//h3[contains(@class, 'search-results__total')]")
     private WebElement searchResultTotal;
 
-    @FindBy ( xpath = "//*[ contains(@class,'search-results__list')]//h3[contains(@class,'search-result__title')]")
+    @FindBy ( xpath = "//li[contains(@class, 'search-result ')]")
     private List<WebElement> searchResultElements;
 
     public SearchPage(WebDriver driver) {
@@ -28,10 +30,8 @@ public class SearchPage {
                 && searchResultTotal.isDisplayed();
     }
 
-    public int getSearchResultNumber() {
-        JavascriptExecutor jsx = (JavascriptExecutor)driver;
-        jsx.executeScript("window.scrollBy(0,1750)", "");
-        return searchResultElements.size();
+    public int getSearchResultsCount() {
+     return searchResultElements.size();
     }
 
     public boolean isSearchResultRelevant(String searchTerm) {
@@ -39,7 +39,6 @@ public class SearchPage {
         String searchResultElementText;
         for (WebElement searchResultElement : searchResultElements) {
             searchResultElementText = searchResultElement.getText();
-            System.out.println(searchResultElementText);
             if (searchResultElementText.toLowerCase().contains(searchTerm.toLowerCase())) {
                 isSearchResultPresent = true;
             } else {
@@ -49,4 +48,14 @@ public class SearchPage {
         }
         return isSearchResultPresent;
     }
+
+    public List<String> getSearchResultsList() {
+        List<String> searchResultStringList = new ArrayList<String>();
+        for (WebElement searchResultElement: searchResultElements) {
+            searchResultStringList.add(searchResultElement.getText());
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", searchResultElement);
+        }
+        return searchResultStringList;
+    }
+
 }
