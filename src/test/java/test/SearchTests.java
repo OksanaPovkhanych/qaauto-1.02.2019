@@ -7,6 +7,9 @@ import page.SearchPage;
 
 import java.util.List;
 
+/**
+ * Class that contains set of search tests.
+ */
 public class SearchTests extends BaseTest {
 
     /**

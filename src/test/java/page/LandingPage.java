@@ -20,9 +20,12 @@ public class LandingPage  {
     @FindBy( xpath = "//input[@id='login-submit']")
     private WebElement signInButton;
 
+    @FindBy( xpath = "//*[@class='link-forgot-password']")
+    private WebElement forgotPasswordLink;
+
     /**
      * Constructor for Landing Page.
-     * @param driver - WebDriver instance from BaseTest class.
+     * @param driver - WebDriver instance from BaseTest.
      */
     public LandingPage(WebDriver driver) {
        this.driver = driver;
@@ -30,10 +33,11 @@ public class LandingPage  {
     }
 
     /**
-     * @param userEmail
-     * @param userPassword
-     * @param <T>
-     * @return
+     * Method that does login to the site.
+     * @param userEmail string representing user email.
+     * @param userPassword string representing user password.
+     * @param <T> type of the page.
+     * @return instance of T-type page.
      */
     public  <T> T login(String userEmail, String userPassword) {
         userEmailField.sendKeys(userEmail);
@@ -58,6 +62,11 @@ public class LandingPage  {
         return driver.getTitle().equals("LinkedIn: Log In or Sign Up")
                 && driver.getCurrentUrl().equals("https://www.linkedin.com/")
                 && (signInButton.isDisplayed());
+    }
+
+    public RequestPasswordResetPage clickOnForgotPasswordLink() {
+        forgotPasswordLink.click();
+        return  new RequestPasswordResetPage(driver);
     }
 
 }

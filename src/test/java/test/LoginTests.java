@@ -3,9 +3,11 @@ package test;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import page.HomePage;
-import page.LoginSubmitPage;
+import page.*;
 
+/**
+ * Class that contains set of test of login to the site.
+ */
 public class LoginTests extends BaseTest {
 
     @DataProvider
@@ -17,6 +19,11 @@ public class LoginTests extends BaseTest {
         };
     }
 
+    /**
+     * Method that checks scenario of login with not valid data, as empty email, empty password or empty both  - email and password.
+     * @param userEmail string that represents user email.
+     * @param userPassword string that represents user password.
+     */
     @Test(dataProvider = "notValidData")
     public void negativeLoginTestStaySamePageTest(String userEmail, String userPassword) {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call.");
@@ -27,12 +34,18 @@ public class LoginTests extends BaseTest {
     @DataProvider
     public Object[][] validData() {
         return new Object[][]{
-                { "k.s.e.n.i.y.a@meta.ua", "test@1989" },
-                { "K.S.E.N.I.Y.A@meta.ua", "test@1989" },
-                { " k.s.e.n.i.y.a@meta.ua", "test@1989" }
+                { "kkseniyatest@gmail.com", "test@1989" },
+                { "kkseniyaTEST@gmail.com", "test@1989" },
+                { " kkseniyatest@gmail.com", "test@1989" },
+                { "kkseniyatest@gmail.com  ", "test@1989" }
         };
     }
 
+    /**
+     * Method that checks scenario of login with valid data.
+     * @param userEmail string that represents user email.
+     * @param userPassword string that represents user password.
+     */
     @Test(dataProvider = "validData")
     public void successfulLoginTest(String userEmail, String userPassword) {
         Assert.assertTrue(landingPage.isPageLoaded(), "Landing page did not load after first call.");
@@ -43,13 +56,21 @@ public class LoginTests extends BaseTest {
     @DataProvider
     public Object[][] notValidDataWithValidation() {
         return new Object[][]{
-                { "k.s.e.n.i.y.a@meta.ua", "111111", "", "Hmm, that's not the right password. Please try again or request a new one." },
-                { "k.s.e.n.i.y.a1@meta.ua", "test@1989","Hmm, we don't recognize that email. Please try again.","" },
-                { "k.s.e.n.i.y.a", "test@1989", "Please enter a valid email address.", "" },
+                { "kkseniyatest@gmail.com", "111111", "", "Hmm, that's not the right password. Please try again or request a new one." },
+                { "kkseniyatestqqq@gmail.com", "test@1989","Hmm, we don't recognize that email. Please try again.","" },
+                { "kkseniyatest", "test@1989", "Please enter a valid email address.", "" },
                 {"343434", "111", "Be sure to include \"+\" and your country code.", ""}
         };
     }
 
+
+    /**
+     * Method that checks scenario of login with incorrect data as wrong email, wrong password, etc.
+     * @param userEmail string that represents user email.
+     * @param userPassword string that represents user password.
+     * @param emailValidationMessage string that represents user email validation message.
+     * @param passwordValidationMessage string that represents user password validation message.
+     */
     @Test(dataProvider = "notValidDataWithValidation")
     public void negativeLoginReturnToLoginSubmitTest(String userEmail,
                                                      String userPassword,
@@ -67,5 +88,6 @@ public class LoginTests extends BaseTest {
                 "Wrong validation message for password field.");
 
     }
+
 
 }
