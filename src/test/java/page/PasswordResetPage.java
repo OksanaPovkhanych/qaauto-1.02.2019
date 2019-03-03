@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Page Object class for PasswordResetPage.
  */
@@ -44,10 +46,11 @@ public class PasswordResetPage {
      * @param confirmPasswordText - string representing the confirmation of new password.
      * @return new instance of HomePage class.
      */
-    public HomePage changePassword(String newPasswordText, String confirmPasswordText) {
+    public PasswordChangedPage changePassword(String newPasswordText, String confirmPasswordText) {
         newPasswordField.sendKeys(newPasswordText);
         confirmPasswordField.sendKeys(confirmPasswordText);
         submitButton.click();
-        return new HomePage(driver);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        return new PasswordChangedPage(driver);
     }
 }
