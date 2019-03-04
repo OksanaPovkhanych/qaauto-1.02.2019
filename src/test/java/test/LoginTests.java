@@ -23,6 +23,12 @@ public class LoginTests extends BaseTest {
      * Method that checks scenario of login with not valid data, as empty email, empty password or empty both  - email and password.
      * @param userEmail string that represents user email.
      * @param userPassword string that represents user password.
+     *
+     * - Open new Browser
+     * - Navigate to http://www.linkedin.com
+     * - Verify that Landing page is loaded
+     * - Login with  not valid credentials
+     * - Verify that you remain on the Landing page
      */
     @Test(dataProvider = "notValidData")
     public void negativeLoginTestStaySamePageTest(String userEmail, String userPassword) {
@@ -45,6 +51,11 @@ public class LoginTests extends BaseTest {
      * Method that checks scenario of login with valid data.
      * @param userEmail string that represents user email.
      * @param userPassword string that represents user password.
+     * - Open new Browser
+     * - Navigate to http://www.linkedin.com
+     * - Verify that Landing page is loaded
+     * - Login with valid credentials
+     * - Verify that Home page is loaded
      */
     @Test(dataProvider = "validData")
     public void successfulLoginTest(String userEmail, String userPassword) {
@@ -70,6 +81,11 @@ public class LoginTests extends BaseTest {
      * @param userPassword string that represents user password.
      * @param emailValidationMessage string that represents user email validation message.
      * @param passwordValidationMessage string that represents user password validation message.
+     * - Open new Browser
+     * - Navigate to http://www.linkedin.com
+     * - Verify that Landing page is loaded
+     * - Login with  not valid credentials
+     * - Verify that LoginSubmitPage is loaded  and validation is shown
      */
     @Test(dataProvider = "notValidDataWithValidation")
     public void negativeLoginReturnToLoginSubmitTest(String userEmail,

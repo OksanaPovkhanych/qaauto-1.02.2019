@@ -15,6 +15,10 @@ public class BaseTest {
 
     /**
      * Method that runs before each test, initialize driver and does some simple settings.
+     *
+     * - Initialize new instance of ChromeDriver
+     * - Go to page https://www.linkedin.com/
+     * - Initialize new instance of Landing Page
      */
     @BeforeMethod
     public void beforeMethod() {
