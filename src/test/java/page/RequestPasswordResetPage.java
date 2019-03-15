@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import util.GMailService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -42,11 +43,20 @@ public class RequestPasswordResetPage {
      * @param userEmail string that representing the user email.
      * @return new instance of RequestPasswordResetSubmitPage.
      */
-    public RequestPasswordResetSubmitPage findAccount(String userEmail) {
+    public void findAccount(String userEmail) {
         userEmailField.sendKeys(userEmail);
+        String messageSubject = "here's the link to reset your password";
+        String messageTo = userEmail;
+        String messageFrom = "security-noreply@linkedin.com";
+
+        GMailService gMailService = new GMailService();
+        gMailService.connect();
+
         findAccountButton.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        return new RequestPasswordResetSubmitPage(driver);
+        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 180);
+        System.out.println("Content: " + message);
+
+       // return new RequestPasswordResetSubmitPage(driver);
     }
 
 }

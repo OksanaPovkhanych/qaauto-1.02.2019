@@ -64,6 +64,10 @@ public class LandingPage  {
                 && (signInButton.isDisplayed());
     }
 
+    /**
+     * Method that click on forgot password link.
+     * @return new instance of RequestPasswordResetPage class.
+     */
     public RequestPasswordResetPage clickOnForgotPasswordLink() {
         forgotPasswordLink.click();
         return  new RequestPasswordResetPage(driver);
