@@ -6,6 +6,7 @@ import page.*;
 
 import static java.lang.Thread.sleep;
 
+
 /**
  * Class that contains set of account tests.
  */
@@ -36,25 +37,18 @@ public class ResetPasswordTests extends BaseTest {
         RequestPasswordResetPage requestPasswordResetPage = landingPage.clickOnForgotPasswordLink();
         Assert.assertTrue(requestPasswordResetPage.isPageLoaded(), "RequestPasswordResetPage did not load.");
 
-        requestPasswordResetPage.findAccount(userEmail);
-        //RequestPasswordResetSubmitPage requestPasswordResetSubmitPage = requestPasswordResetPage.findAccount(userEmail);
-      /*  Assert.assertTrue(requestPasswordResetSubmitPage.isPageLoaded(), "RequestPasswordResetSubmitPage did not load.");
+        RequestPasswordResetSubmitPage requestPasswordResetSubmitPage = requestPasswordResetPage.findAccount(userEmail);
+        Assert.assertTrue(requestPasswordResetSubmitPage.isPageLoaded(), "RequestPasswordResetSubmitPage did not load.");
 
-        try {
-            sleep (120000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        PasswordResetPage passwordResetPage = new PasswordResetPage(driver);
+        PasswordResetPage passwordResetPage = requestPasswordResetSubmitPage.goByLinkToResetPassword();
         Assert.assertTrue(passwordResetPage.isPageLoaded(), "PasswordResetSubmitPage did not load.");
 
-        PasswordChangedPage passwordChangedPage = passwordResetPage.changePassword("test@2019","test@2019");
+        PasswordChangedPage passwordChangedPage = passwordResetPage.changePassword("test@2020","test@2020");
         Assert.assertTrue(passwordChangedPage.isPageLoaded(), "PasswordChangedPage did not load.");
 
         HomePage homePage = passwordChangedPage.goToHomepage();
         Assert.assertTrue(homePage.isPageLoaded(), "Homepage did not load.");
-*/
+
     }
 
 }

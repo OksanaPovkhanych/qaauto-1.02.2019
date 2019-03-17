@@ -1,5 +1,6 @@
 package page;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,10 +9,13 @@ import util.GMailService;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
+
+
 /**
  * Page Object class for RequestPasswordResetPage.
  */
-public class RequestPasswordResetPage {
+public class RequestPasswordResetPage extends  BasePage {
     private WebDriver driver;
 
     @FindBy( xpath = "//input[@id='username']")
@@ -20,11 +24,13 @@ public class RequestPasswordResetPage {
     @FindBy( xpath = "//*[@id='reset-password-submit-button']")
     private WebElement findAccountButton;
 
+
     /**
      * Constructor for RequestPasswordResetPage.
      * @param driver - WebDriver instance from BaseTest.
      */
     public RequestPasswordResetPage(WebDriver driver) {
+
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -39,24 +45,34 @@ public class RequestPasswordResetPage {
                 && (findAccountButton.isDisplayed());
     }
 
+
     /** Method that finds if account is valid.
      * @param userEmail string that representing the user email.
      * @return new instance of RequestPasswordResetSubmitPage.
      */
-    public void findAccount(String userEmail) {
+    public RequestPasswordResetSubmitPage findAccount(String userEmail) {
         userEmailField.sendKeys(userEmail);
-        String messageSubject = "here's the link to reset your password";
-        String messageTo = userEmail;
-        String messageFrom = "security-noreply@linkedin.com";
 
         GMailService gMailService = new GMailService();
         gMailService.connect();
 
         findAccountButton.click();
-        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 180);
+
+        String messageSubject = "here's the link to reset your password";
+        String messageTo = userEmail;
+        String messageFrom = "security-noreply@linkedin.com";
+
+        String message =  gMailService.waitMessage(messageSubject, messageTo, messageFrom, 180);
         System.out.println("Content: " + message);
 
-       // return new RequestPasswordResetSubmitPage(driver);
+        int startOfLink = message.indexOf("https://www.linkedin.com/e/");
+
+        String tempResetPasswordLink = StringUtils.substringBefore(message.substring(startOfLink), "\"");
+        BasePage.resetPasswordLink = tempResetPasswordLink.replace("&amp;", "&");
+        System.out.println("resetPasswordLink: " + BasePage.resetPasswordLink );
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        return new RequestPasswordResetSubmitPage(driver);
     }
 
 }
