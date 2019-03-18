@@ -1,10 +1,14 @@
 package page;
 
-import util.GMailService;
-
 public class BasePage {
 
-    public static String resetPasswordLink;
+    private static String resetPasswordLink;
 
+    public static String getResetPasswordLink() {
+        return BasePage.resetPasswordLink;
+    }
 
+    public static void setResetPasswordLink(String resetPasswordLink) {
+        BasePage.resetPasswordLink = resetPasswordLink;
+    }
 }

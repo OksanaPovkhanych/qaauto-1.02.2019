@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.*;
 
-import static java.lang.Thread.sleep;
 
 
 /**
@@ -43,7 +42,7 @@ public class ResetPasswordTests extends BaseTest {
         PasswordResetPage passwordResetPage = requestPasswordResetSubmitPage.goByLinkToResetPassword();
         Assert.assertTrue(passwordResetPage.isPageLoaded(), "PasswordResetSubmitPage did not load.");
 
-        PasswordChangedPage passwordChangedPage = passwordResetPage.changePassword("test@2020","test@2020");
+        PasswordChangedPage passwordChangedPage = passwordResetPage.changePassword("test@2021","test@2021");
         Assert.assertTrue(passwordChangedPage.isPageLoaded(), "PasswordChangedPage did not load.");
 
         HomePage homePage = passwordChangedPage.goToHomepage();

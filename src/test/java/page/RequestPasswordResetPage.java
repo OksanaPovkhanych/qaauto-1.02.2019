@@ -9,8 +9,6 @@ import util.GMailService;
 
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
-
 
 /**
  * Page Object class for RequestPasswordResetPage.
@@ -66,10 +64,8 @@ public class RequestPasswordResetPage extends  BasePage {
         System.out.println("Content: " + message);
 
         int startOfLink = message.indexOf("https://www.linkedin.com/e/");
-
         String tempResetPasswordLink = StringUtils.substringBefore(message.substring(startOfLink), "\"");
-        BasePage.resetPasswordLink = tempResetPasswordLink.replace("&amp;", "&");
-        System.out.println("resetPasswordLink: " + BasePage.resetPasswordLink );
+        BasePage.setResetPasswordLink(tempResetPasswordLink.replace("&amp;", "&"));
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return new RequestPasswordResetSubmitPage(driver);
