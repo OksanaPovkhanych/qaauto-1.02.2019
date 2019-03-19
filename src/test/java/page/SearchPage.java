@@ -6,15 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Page Object class for SearchPage.
  */
-public class SearchPage {
-    private WebDriver driver;
+public class SearchPage extends BasePage{
 
     @FindBy( xpath = "//h3[contains(@class, 'search-results__total')]")
     private WebElement searchResultTotal;

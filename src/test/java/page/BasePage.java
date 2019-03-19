@@ -1,14 +1,10 @@
 package page;
 
+import org.openqa.selenium.WebDriver;
+
 public class BasePage {
 
-    private static String resetPasswordLink;
+    protected static String resetPasswordUrl;
+    protected WebDriver driver;
 
-    public static String getResetPasswordLink() {
-        return BasePage.resetPasswordLink;
-    }
-
-    public static void setResetPasswordLink(String resetPasswordLink) {
-        BasePage.resetPasswordLink = resetPasswordLink;
-    }
 }

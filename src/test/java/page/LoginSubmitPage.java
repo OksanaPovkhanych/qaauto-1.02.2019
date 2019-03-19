@@ -8,8 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Page Object class for Login submit page.
  */
-public class LoginSubmitPage {
-    private WebDriver driver;
+public class LoginSubmitPage extends BasePage{
 
     @FindBy( xpath = "//div[@id='error-for-password']")
     private WebElement passwordValidationMessage;

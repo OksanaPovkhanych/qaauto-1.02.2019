@@ -8,10 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Page Object class for PasswordResetPage.
+ * Page Object class for ChooseNewPasswordPage.
  */
-public class PasswordResetPage {
-    private WebDriver driver;
+public class ChooseNewPasswordPage extends BasePage{
 
     @FindBy( xpath = "//*[@id='newPassword']")
     private WebElement newPasswordField;
@@ -23,10 +22,10 @@ public class PasswordResetPage {
     private WebElement submitButton;
 
     /**
-     * Constructor for PasswordResetPage.
+     * Constructor for ChooseNewPasswordPage.
      * @param driver - WebDriver instance from BaseTest.
      */
-    public PasswordResetPage(WebDriver driver) {
+    public ChooseNewPasswordPage(WebDriver driver)  {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
  * Page Object class for RequestPasswordResetPage.
  */
 public class RequestPasswordResetPage extends  BasePage {
-    private WebDriver driver;
 
     @FindBy( xpath = "//input[@id='username']")
     private WebElement userEmailField;
@@ -63,9 +62,9 @@ public class RequestPasswordResetPage extends  BasePage {
         String message =  gMailService.waitMessage(messageSubject, messageTo, messageFrom, 180);
         System.out.println("Content: " + message);
 
-        int startOfLink = message.indexOf("https://www.linkedin.com/e/");
-        String tempResetPasswordLink = StringUtils.substringBefore(message.substring(startOfLink), "\"");
-        BasePage.setResetPasswordLink(tempResetPasswordLink.replace("&amp;", "&"));
+        resetPasswordUrl = StringUtils.substringBetween(message, "href=\"",
+                "\" style=\"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;\">Reset my password");
+        resetPasswordUrl.replace("amp;", "");
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return new RequestPasswordResetSubmitPage(driver);

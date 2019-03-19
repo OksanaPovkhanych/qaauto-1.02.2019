@@ -39,10 +39,10 @@ public class ResetPasswordTests extends BaseTest {
         RequestPasswordResetSubmitPage requestPasswordResetSubmitPage = requestPasswordResetPage.findAccount(userEmail);
         Assert.assertTrue(requestPasswordResetSubmitPage.isPageLoaded(), "RequestPasswordResetSubmitPage did not load.");
 
-        PasswordResetPage passwordResetPage = requestPasswordResetSubmitPage.goByLinkToResetPassword();
-        Assert.assertTrue(passwordResetPage.isPageLoaded(), "PasswordResetSubmitPage did not load.");
+        ChooseNewPasswordPage chooseNewPasswordPage = requestPasswordResetSubmitPage.navigateToLinkFromEmail();
+        Assert.assertTrue(chooseNewPasswordPage.isPageLoaded(), "ChooseNewPasswordPage did not load.");
 
-        PasswordChangedPage passwordChangedPage = passwordResetPage.changePassword("test@2021","test@2021");
+        PasswordChangedPage passwordChangedPage = chooseNewPasswordPage.changePassword("test@2022","test@2022");
         Assert.assertTrue(passwordChangedPage.isPageLoaded(), "PasswordChangedPage did not load.");
 
         HomePage homePage = passwordChangedPage.goToHomepage();

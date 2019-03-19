@@ -10,7 +10,7 @@ import page.LandingPage;
  *  Basic class for all classes of tests.
  */
 public class BaseTest {
-    WebDriver driver;
+    private WebDriver driver;
     LandingPage landingPage;
 
     /**

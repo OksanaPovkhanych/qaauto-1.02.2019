@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
  * Page Object class for RequestPasswordResetSubmitPage.
  */
 public class RequestPasswordResetSubmitPage extends BasePage {
-    private WebDriver driver;
 
     @FindBy( xpath = "//*[contains(@class,'different__email') and text()='Try different email']")
     private WebElement tryDifferentAccountButton;
@@ -32,16 +31,16 @@ public class RequestPasswordResetSubmitPage extends BasePage {
      */
     public boolean isPageLoaded() {
        return driver.getTitle().equals("Please check your mail for reset password link. | LinkedIn")
-                && driver.getCurrentUrl().equals("https://www.linkedin.com/checkpoint/rp/request-password-reset-submit")
+                && driver.getCurrentUrl().contains("/checkpoint/rp/request-password-reset-submit")
                 && (tryDifferentAccountButton.isDisplayed());
     }
 
-    public PasswordResetPage goByLinkToResetPassword() {
-        driver.get(BasePage.getResetPasswordLink() );
+    public ChooseNewPasswordPage navigateToLinkFromEmail() {
+        driver.get(resetPasswordUrl);
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        return new PasswordResetPage(driver);
+        return new ChooseNewPasswordPage(driver);
 
     }
 

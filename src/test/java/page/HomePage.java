@@ -11,8 +11,7 @@ import static java.lang.Thread.sleep;
 /**
  * Page Object class for Home page.
  */
-public class HomePage {
-    private WebDriver driver;
+public class HomePage  extends BasePage{
 
     @FindBy ( xpath = "//li[@id='profile-nav-item']")
     private WebElement profileNavMenuItem;

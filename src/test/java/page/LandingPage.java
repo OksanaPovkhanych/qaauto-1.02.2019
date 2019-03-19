@@ -8,8 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Page Object class for Landing page.
  */
-public class LandingPage  {
-    private WebDriver driver;
+public class LandingPage  extends BasePage{
 
     @FindBy( xpath = "//input[@id='login-email']")
     private WebElement userEmailField;
