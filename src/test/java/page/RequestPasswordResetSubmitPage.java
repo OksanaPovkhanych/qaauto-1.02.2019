@@ -21,7 +21,8 @@ public class RequestPasswordResetSubmitPage extends BasePage {
      * @param driver - WebDriver instance from BaseTest.
      */
     public RequestPasswordResetSubmitPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+        // this.driver = driver;
         PageFactory.initElements(driver, this);
         }
 
@@ -35,13 +36,13 @@ public class RequestPasswordResetSubmitPage extends BasePage {
                 && (tryDifferentAccountButton.isDisplayed());
     }
 
+    /** Method that go by reset password url.
+     * @return new instance of ChooseNewPasswordPage.
+     */
     public ChooseNewPasswordPage navigateToLinkFromEmail() {
         driver.get(resetPasswordUrl);
-
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
         return new ChooseNewPasswordPage(driver);
-
     }
 
 }

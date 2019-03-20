@@ -27,7 +27,7 @@ public class LandingPage  extends BasePage{
      * @param driver - WebDriver instance from BaseTest.
      */
     public LandingPage(WebDriver driver) {
-       this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 

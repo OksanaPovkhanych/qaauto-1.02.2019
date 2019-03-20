@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.concurrent.TimeUnit;
+
 
 /**
  * Page Object class for ChooseNewPasswordPage.
@@ -26,7 +26,7 @@ public class ChooseNewPasswordPage extends BasePage{
      * @param driver - WebDriver instance from BaseTest.
      */
     public ChooseNewPasswordPage(WebDriver driver)  {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -35,9 +35,11 @@ public class ChooseNewPasswordPage extends BasePage{
      * @return true/false
      */
     public boolean isPageLoaded() {
-        return driver.getCurrentUrl().contains("/checkpoint/rp/password-reset?requestSubmissionId=")
+   return driver.getCurrentUrl().contains("/checkpoint/rp/password-reset?requestSubmissionId=")
                 && submitButton.isDisplayed()
                 && driver.getTitle().equals("Reset Your Password | LinkedIn");
+
+
     }
 
     /** Method that change user password.

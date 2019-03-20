@@ -25,7 +25,7 @@ public class SearchPage extends BasePage{
      * @param driver - WebDriver instance from BaseTest.
      */
     public SearchPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 

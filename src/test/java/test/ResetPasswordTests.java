@@ -20,7 +20,7 @@ public class ResetPasswordTests extends BaseTest {
      * - Verify that RequestPasswordResetPage is loaded
      * - Input valid email of the user and click button "Find account"
      * - Verify that RequestPasswordResetSubmitPage is loaded
-     * - Insert a wait with duration of 2 minutes (insert a link from the email by hands)
+     * - Get link from the email and go by this link
      * - Verify that PasswordResetSubmitPage is loaded
      * - Input new password, confirm new password and click on submit button
      * - Verify that PasswordChangedPage is loaded
@@ -42,12 +42,11 @@ public class ResetPasswordTests extends BaseTest {
         ChooseNewPasswordPage chooseNewPasswordPage = requestPasswordResetSubmitPage.navigateToLinkFromEmail();
         Assert.assertTrue(chooseNewPasswordPage.isPageLoaded(), "ChooseNewPasswordPage did not load.");
 
-        PasswordChangedPage passwordChangedPage = chooseNewPasswordPage.changePassword("test@2022","test@2022");
+        PasswordChangedPage passwordChangedPage = chooseNewPasswordPage.changePassword("test@2037","test@2037");
         Assert.assertTrue(passwordChangedPage.isPageLoaded(), "PasswordChangedPage did not load.");
 
         HomePage homePage = passwordChangedPage.goToHomepage();
         Assert.assertTrue(homePage.isPageLoaded(), "Homepage did not load.");
-
     }
 
 }

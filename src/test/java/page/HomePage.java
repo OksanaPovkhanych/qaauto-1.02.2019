@@ -24,7 +24,7 @@ public class HomePage  extends BasePage{
      * @param driver - WebDriver instance from BaseTest.
      */
     public HomePage(WebDriver driver) {
-         this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 

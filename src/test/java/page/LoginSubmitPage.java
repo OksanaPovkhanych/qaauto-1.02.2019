@@ -20,7 +20,8 @@ public class LoginSubmitPage extends BasePage{
     private WebElement loginForm;
 
     public LoginSubmitPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+        // this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 

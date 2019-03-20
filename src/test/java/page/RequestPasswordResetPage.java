@@ -27,8 +27,7 @@ public class RequestPasswordResetPage extends  BasePage {
      * @param driver - WebDriver instance from BaseTest.
      */
     public RequestPasswordResetPage(WebDriver driver) {
-
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -43,7 +42,7 @@ public class RequestPasswordResetPage extends  BasePage {
     }
 
 
-    /** Method that finds if account is valid.
+    /** Method that finds if account is valid and also method get ResetPasswordUrl.
      * @param userEmail string that representing the user email.
      * @return new instance of RequestPasswordResetSubmitPage.
      */
@@ -60,11 +59,11 @@ public class RequestPasswordResetPage extends  BasePage {
         String messageFrom = "security-noreply@linkedin.com";
 
         String message =  gMailService.waitMessage(messageSubject, messageTo, messageFrom, 180);
-        System.out.println("Content: " + message);
 
-        resetPasswordUrl = StringUtils.substringBetween(message, "href=\"",
+        int startPosition = message.indexOf("https://www.linkedin.com/e/");
+        String tempResetPasswordUrl = StringUtils.substringBefore(message.substring(startPosition),
                 "\" style=\"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;\">Reset my password");
-        resetPasswordUrl.replace("amp;", "");
+        resetPasswordUrl = tempResetPasswordUrl.replace("amp;", "");
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return new RequestPasswordResetSubmitPage(driver);

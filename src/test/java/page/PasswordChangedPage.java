@@ -19,8 +19,8 @@ public class PasswordChangedPage extends BasePage{
      * @param driver - WebDriver instance from BaseTest.
      */
     public PasswordChangedPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+       super(driver);
+       PageFactory.initElements(driver, this);
     }
 
     /**
