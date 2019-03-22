@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import util.GMailService;
 
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -65,7 +64,6 @@ public class RequestPasswordResetPage extends  BasePage {
                 "\" style=\"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;\">Reset my password");
         resetPasswordUrl = tempResetPasswordUrl.replace("amp;", "");
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return new RequestPasswordResetSubmitPage(driver);
     }
 

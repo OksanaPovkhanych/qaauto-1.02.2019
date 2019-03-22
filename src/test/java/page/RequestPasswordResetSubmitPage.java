@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.concurrent.TimeUnit;
-
 
 /**
  * Page Object class for RequestPasswordResetSubmitPage.
@@ -41,7 +39,6 @@ public class RequestPasswordResetSubmitPage extends BasePage {
      */
     public ChooseNewPasswordPage navigateToLinkFromEmail() {
         driver.get(resetPasswordUrl);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return new ChooseNewPasswordPage(driver);
     }
 

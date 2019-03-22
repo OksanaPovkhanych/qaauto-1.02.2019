@@ -27,8 +27,8 @@ public class SearchTests extends BaseTest {
      */
     @Test
     public void basicSearchTest() {
-        String userEmail = "k.s.e.n.i.y.a@meta.ua";
-        String userPassword = "test@1989";
+        String userEmail = "kkseniyatest@gmail.com";
+        String userPassword = "test@2037";
         String searchTerm = "HR";
         int searchResultCount = 10;
 

@@ -1,6 +1,9 @@
 package page;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Page Object class for BasePage.
@@ -18,8 +21,17 @@ public abstract class BasePage {
     }
 
     /**
-     * Method that checks if page is loaded.
+     * Abstract method that checks if page is loaded.
      * @return true/false
      */
-    public abstract boolean isPageLoaded();
+    protected abstract boolean isPageLoaded();
+
+    protected void waitUntilElementIsClickable(WebElement webElement, int timeOutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+     protected  void waitUntilElementIsClickable(WebElement webElement) {
+         waitUntilElementIsClickable(webElement, 5);
+     }
 }
