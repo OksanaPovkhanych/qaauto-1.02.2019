@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Login Test Suite" >
+    <test name="Positive" >
+        <classes>
+            <class name="test.LoginTests">
+                <methods>
+                    <include name="successfulLoginTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Negative" >
+        <classes>
+            <class name="test.LoginTests">
+                <methods>
+                    <include name="negativeLoginTestStaySamePageTest" />
+                    <include name="negativeLoginReturnToLoginSubmitTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+</suite>

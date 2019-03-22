@@ -40,10 +40,10 @@ public class LoginTests extends BaseTest {
     @DataProvider
     public Object[][] validData() {
         return new Object[][]{
-                { "kkseniyatest@gmail.com", "test@1989" },
-                { "kkseniyaTEST@gmail.com", "test@1989" },
-                { " kkseniyatest@gmail.com", "test@1989" },
-                { "kkseniyatest@gmail.com  ", "test@1989" }
+                { "kkseniyatest@gmail.com", "test@2037" },
+                { "kkseniyaTEST@gmail.com", "test@2037" },
+                { " kkseniyatest@gmail.com", "test@2037" },
+                { "kkseniyatest@gmail.com  ", "test@2037" }
         };
     }
 
@@ -68,8 +68,8 @@ public class LoginTests extends BaseTest {
     public Object[][] notValidDataWithValidation() {
         return new Object[][]{
                 { "kkseniyatest@gmail.com", "111111", "", "Hmm, that's not the right password. Please try again or request a new one." },
-                { "kkseniyatestqqq@gmail.com", "test@1989","Hmm, we don't recognize that email. Please try again.","" },
-                { "kkseniyatest", "test@1989", "Please enter a valid email address.", "" },
+                { "kkseniyatestqqq@gmail.com", "test@2037","Hmm, we don't recognize that email. Please try again.","" },
+                { "kkseniyatest", "test@2037", "Please enter a valid email address.", "" },
                 {"343434", "111", "Be sure to include \"+\" and your country code.", ""}
         };
     }
